@@ -1,19 +1,10 @@
 pipeline {
-    agent any 
+    agent any
     stages {
-        stage('checkout SCM') { 
+        stage ("Checkout") {
             steps {
-                checkout scmGit(branches: [[name: '*/main']],
-                 extensions: [], 
-                 userRemoteConfigs: [[credentialsId: 'aws_pem',
-                 url: 'https://github.com/Suvidha25/Jenkins_new.git']])
+                echo "This is 1st stage"
             }
         }
-        stage('Build') { 
-            steps {
-                echo "This is for testing" 
-            }
-        }
-
     }
 }

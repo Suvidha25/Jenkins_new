@@ -11,7 +11,7 @@ pipeline {
         }
         stage('Build') { 
             steps {
-                echo "This is first pipeline job" 
+                echo "This is for testing" 
             }
         }
 

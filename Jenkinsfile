@@ -6,7 +6,7 @@ pipeline {
                 echo "This is first stage"
             }
         }
-       stage ("checkout SCM") {
+       stage ("Checkout SCM") {
             steps {
                 echo "This is second stage"
             }

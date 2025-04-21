@@ -1,10 +1,16 @@
 pipeline {
     agent any 
     stages {
-        stage('stage1') { 
+        stage('checkout') { 
             steps {
                 echo "This is first pipeline job" 
             }
         }
+        stage('Build') { 
+            steps {
+                echo "This is first pipeline job" 
+            }
+        }
+
     }
 }

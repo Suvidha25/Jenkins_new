@@ -256,9 +256,9 @@ pipeline {
     agent any
     stages {
 
-        stage("Checkout") {
+        stage('Checkout') {
             steps {
-                catchError(stageResult: '')
+                catchError(stageResult: 'Failure')
                 sh 'exit 1'
             }
         }

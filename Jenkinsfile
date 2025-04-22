@@ -196,24 +196,46 @@
 // }
 
 
+// pipeline {
+//     agent any
+
+//     triggers { 
+//         pollSCM('H/2 * * * *') 
+//     }
+
+//     stages {
+
+//         stage('Checkout') {
+//             steps {
+//                echo ""
+//             }
+//         }
+
+//         stage ('Build') {
+//             steps {
+//                 sh 'ls -lrt'
+//             }
+//         }
+//     }
+// }
+
+
+
 pipeline {
     agent any
 
-    triggers { 
-        pollSCM('H/2 * * * *') 
+    environment {
+        APP = 'frontend'
+        ENV = 'prod'
     }
 
     stages {
-
-        stage('Checkout') {
+        stage('checkout') {
             steps {
-               echo ""
-            }
-        }
-
-        stage ('Build') {
-            steps {
-                sh 'ls -lrt'
+                echo "This is checkout stage"
+                sh '''
+                  echo "APP_TYPE: $APP TARGET_ENV : $ENV"
+                '''  
             }
         }
     }

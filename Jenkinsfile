@@ -98,18 +98,59 @@
 // }
 
 
+// to run jobs parallely
+// pipeline {
+//     agent any
+//     stages {
+
+//         stage ("Checkout") {
+//             steps {
+//                 echo "This is first stage"
+//             }
+//         }
+
+//         stage ('Parallel Building') {
+//             parallel {
+//                 stage ('Build1') {
+//                     steps {
+//                         echo "This is Build1 stage"
+//                     }
+//                 }
+
+//                 stage ('Build2') {
+//                     steps {
+//                         echo "This is Build2 stage"
+//                     }
+//                 }
+                
+//             }
+//         }    
+//    }
+// }
+
+
 
 pipeline {
     agent any
     stages {
 
-        stage ("Checkout") {
-            steps {
-                echo "This is first stage"
+        stage ('Parallel checkout') {
+            parallel {
+                stage('checkout1') {
+                    steps {
+                        echo "This is checkout1 stage"
+                    }
+                }
+
+                stage ('checkout2') {
+                    steps {
+                        echo "This is checkout2 stage"
+                    }
+                }
             }
         }
 
-        stage ('Parallel Building') {
+        stage ('Parallel Build') {
             parallel {
                 stage ('Build1') {
                     steps {
@@ -122,8 +163,7 @@ pipeline {
                         echo "This is Build2 stage"
                     }
                 }
-                
             }
-        }    
-   }
+        }
+    }
 }

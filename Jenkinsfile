@@ -221,35 +221,35 @@
 
 
 
-pipeline {
-    agent any
+// pipeline {
+//     agent any
 
-    environment {
-        APP = 'frontend'
-        ENV = 'prod'
-    }
+//     environment {
+//         APP = 'frontend'
+//         ENV = 'prod'
+//     }
 
-    stages {
-        stage('checkout') {
-            steps {
-                echo "This is checkout stage"
-                sh '''
-                  echo "APP_TYPE: $APP TARGET_ENV : $ENV"
-                '''  
-                sh 'ls -lrt'
-            }
-        }
+//     stages {
+//         stage('checkout') {
+//             steps {
+//                 echo "This is checkout stage"
+//                 sh '''
+//                   echo "APP_TYPE: $APP TARGET_ENV : $ENV"
+//                 '''  
+//                 sh 'ls -lrt'
+//             }
+//         }
 
-        stage ('Build') {
-            steps {
-                sh '''
-                  echo "APP_TYPE: $APP TARGET_ENV : $ENV"
-                '''
-                sh 'pwd'
-            }
-        }
-    }
-}
+//         stage ('Build') {
+//             steps {
+//                 sh '''
+//                   echo "APP_TYPE: $APP TARGET_ENV : $ENV"
+//                 '''
+//                 sh 'pwd'
+//             }
+//         }
+//     }
+// }
 
 
 // pipeline {
@@ -272,28 +272,28 @@ pipeline {
 // }
 
 
-// pipeline {
-//     agent any
+pipeline {
+    agent any
 
-//     environment {
-//          APP = 'frontend'
-//          ENV = 'prod'
-//     }
-//     stages {
+    environment {
+         APP = 'frontend'
+         ENV = 'prod'
+    }
+    stages {
 
-//         stage ("SCM Checkout") {
-//             steps {
-//                 echo "This is checkout stage"
-//                 sh '''
-//                 echo 'App_type: $APP Env_type: $ENV'
-//                 '''
-//             }
-//         }  
+        stage ("SCM Checkout") {
+            steps {
+                echo "This is checkout stage"
+                sh '''
+                echo "App_type: $APP Env_type: $ENV"
+                '''
+            }
+        }  
         
-//         stage ("Build") {
-//             steps {
-//                 echo "This is Build stage"
-//             }
-//         }
-//     }
-// }
+        stage ("Build") {
+            steps {
+                echo "This is Build stage"
+            }
+        }
+    }
+}

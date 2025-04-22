@@ -353,7 +353,7 @@ pipeline {
             steps {
                 echo "This is Build stage"
                 sh '''
-                echo "APP_TYPE: ${env.APP} ENV:${env.ENV}"
+                echo "${env.APP}"
                 '''
             }
         }

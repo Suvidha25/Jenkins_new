@@ -355,8 +355,15 @@ pipeline {
 
                 script {
                     echo "GROOVY ---> APP_TYPE : $APP ENV_TYPE: $ENV"
+                }                
+            }
+        }
+
+        stage("Test") {
+            steps {
+                script {
+                    echo "GROOVY ---> APP_TYPE : ${env.APP} ENV_TYPE: ${env.ENV}"
                 }
-                
             }
         }
     }

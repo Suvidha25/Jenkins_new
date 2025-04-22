@@ -242,6 +242,9 @@ pipeline {
 
         stage ('Build') {
             steps {
+                sh '''
+                  echo "APP_TYPE: $APP TARGET_ENV : $ENV"
+                '''
                 sh 'pwd'
             }
         }

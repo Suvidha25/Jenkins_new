@@ -129,40 +129,65 @@
 // }
 
 
+// using parallel jobs for multiple stages
+// pipeline {
+//     agent any
+//     stages {
+
+//         stage ('Parallel checkout') {
+//             parallel {
+//                 stage('checkout1') {
+//                     steps {
+//                         echo "This is checkout1 stage"
+//                     }
+//                 }
+
+//                 stage ('checkout2') {
+//                     steps {
+//                         echo "This is checkout2 stage"
+//                     }
+//                 }
+//             }
+//         }
+
+//         stage ('Parallel Build') {
+//             parallel {
+//                 stage ('Build1') {
+//                     steps {
+//                         echo "This is Build1 stage"
+//                     }
+//                 }
+
+//                 stage ('Build2') {
+//                     steps {
+//                         echo "This is Build2 stage"
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
 
 pipeline {
     agent any
     stages {
 
-        stage ('Parallel checkout') {
-            parallel {
-                stage('checkout1') {
-                    steps {
-                        echo "This is checkout1 stage"
-                    }
-                }
-
-                stage ('checkout2') {
-                    steps {
-                        echo "This is checkout2 stage"
-                    }
-                }
+        stage(Checkout) {
+            steps {
+                echo ""
             }
         }
 
-        stage ('Parallel Build') {
-            parallel {
-                stage ('Build1') {
-                    steps {
-                        echo "This is Build1 stage"
-                    }
-                }
+        stage ('Build') {
+            steps {
+                sh 'ls -lrt'
+            }
+        }
 
-                stage ('Build2') {
-                    steps {
-                        echo "This is Build2 stage"
-                    }
-                }
+        stage ('Test') {
+            steps {
+                echo ""
             }
         }
     }

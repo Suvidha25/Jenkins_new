@@ -293,6 +293,9 @@ pipeline {
         stage ("Build") {
             steps {
                 echo "This is Build stage"
+                sh '''
+                echo "last_name: $LN First_name:$FN"
+                '''
             }
         }
     }

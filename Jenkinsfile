@@ -207,7 +207,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-               echo ""
+               sh 'ls -lrt'
             }
         }
 

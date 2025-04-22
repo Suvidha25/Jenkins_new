@@ -168,28 +168,54 @@
 //     }
 // }
 
+//How to use shell scripting in jenkins
+// pipeline {
+//     agent any
+//     stages {
+
+//         stage(Checkout) {
+//             steps {
+//                 echo "This is checkout stage"
+//             }
+//         }
+
+//         stage ('Build') {
+//             steps {
+//                 sh 'pwd'
+//             }
+//         }
+
+//         stage ('Test') {
+//             steps {
+//                 sh '''pwd
+//                 ls -lrt
+//                 '''
+//             }
+//         }
+//     }
+// }
+
 
 pipeline {
     agent any
+
+    triggers {
+        pollSCM('H/2 * * * *')
+    }
+
     stages {
 
-        stage(Checkout) {
+        stage('Checkout') {
             steps {
-                echo "This is checkout stage"
+                checkout scmGit(branches: [[name: '*/main']],
+                extensions: [], userRemoteConfigs: [[credentialsId: 'aws_pem', 
+                url: 'https://github.com/Suvidha25/Jenkins_new.git']])
             }
         }
 
         stage ('Build') {
             steps {
-                sh 'pwd'
-            }
-        }
-
-        stage ('Test') {
-            steps {
-                sh '''pwd
-                ls -lrt
-                '''
+                echo ""
             }
         }
     }

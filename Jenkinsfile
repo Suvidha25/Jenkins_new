@@ -351,7 +351,7 @@ pipeline {
         
         stage ("Build") {
             steps {
-                echo "GROOVY ---> APP_TYPE: $APP ENV_TYPE: $ENV"
+                echo "GROOVY ---> APP_TYPE: ${env.APP} ENV_TYPE: ${env.ENV}"
 
                 script {
                     echo "GROOVY ---> APP_TYPE : $APP ENV_TYPE: $ENV"

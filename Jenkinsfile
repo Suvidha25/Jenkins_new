@@ -109,23 +109,17 @@ pipeline {
             }
         }
 
-        stage ('Build') {
-            steps {
-                echo "This is second stage"
-            }
-        } 
-
-        stage ('Parallel Testing') {
+        stage ('Parallel Building') {
             parallel {
-                stage ('Test1') {
+                stage ('Build1') {
                     steps {
-                        echo "This is Test1 stage"
+                        echo "This is Build1 stage"
                     }
                 }
 
-                stage ('Test2') {
+                stage ('Build2') {
                     steps {
-                        echo "This is Test2 stage"
+                        echo "This is Build2 stage"
                     }
                 }
                 

@@ -252,21 +252,48 @@
 // }
 
 
+// pipeline {
+//     agent any
+//     stages {
+
+//         stage('Checkout') {
+//             steps {
+//                 catchError(stageResult: 'Failure')
+//                 sh 'exit 1'
+//             }
+//         }
+
+//         stage ('Build') {
+//             steps {
+//                 echo "This is Build stage"
+//             }
+//         }    
+//     }
+// }
+
+
 pipeline {
     agent any
+
+    environment {
+        FN = 'suvidha'
+        LN = 'Hezib'
+    }
     stages {
 
-        stage('Checkout') {
+        stage ("SCM Checkout") {
             steps {
-                catchError(stageResult: 'Failure')
-                sh 'exit 1'
+                echo "This is checkout stage"
+                sh '''
+                echo 'My name is ${FN} ${LN}'
+                '''
             }
-        }
-
-        stage ('Build') {
+        }  
+        
+        stage ("Build") {
             steps {
                 echo "This is Build stage"
             }
-        }    
+        }
     }
 }

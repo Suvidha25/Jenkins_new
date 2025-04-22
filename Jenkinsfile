@@ -303,21 +303,48 @@
 
 
 
+// pipeline {
+//     agent any
+
+
+//     stages {
+
+//         stage ("SCM Checkout") {
+//            environment {
+//                FN = 'suvidha'
+//                LN = 'hezib'
+//             }
+//             steps {
+//                 echo "This is checkout stage"
+//                 sh '''
+//                 echo "First_name: $FN Last_name: $LN"
+//                 '''
+//             }
+//         }  
+        
+//         stage ("Build") {
+//             steps {
+//                 echo "This is Build stage"
+//             }
+//         }
+//     }
+// }
+
+
 pipeline {
     agent any
 
-
+    environment {
+         APP = 'frontend'
+         ENV = 'prod'
+    }
     stages {
 
         stage ("SCM Checkout") {
-           environment {
-               FN = 'suvidha'
-               LN = 'hezib'
-            }
             steps {
                 echo "This is checkout stage"
                 sh '''
-                echo "First_name: $FN Last_name: $LN"
+                echo "APP_TYPE: $APP ENV_Type: $ENV"
                 '''
             }
         }  
@@ -325,7 +352,11 @@ pipeline {
         stage ("Build") {
             steps {
                 echo "This is Build stage"
+                sh '''
+                echo "APP_TYPE: ${env.APP} ENV:${env.ENV}"
+                '''
             }
         }
     }
 }
+

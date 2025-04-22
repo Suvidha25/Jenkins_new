@@ -331,41 +331,97 @@
 // }
 
 
+// pipeline {
+//     agent any
+
+//     environment {
+//          APP = 'frontend'
+//          ENV = 'prod'
+//     }
+//     stages {
+
+//         stage ("SCM Checkout") {
+//             steps {
+//                 echo "This is checkout stage"
+//                 sh '''
+//                 echo "APP_TYPE: $APP ENV_Type: $ENV"
+//                 '''
+//             }
+//         }  
+        
+//         stage ("Build") {
+//             steps {
+//                 echo "GROOVY ---> APP_TYPE: ${env.APP} ENV_TYPE: ${env.ENV}"
+
+//                 script {
+//                     echo "GROOVY ---> APP_TYPE : $APP ENV_TYPE: $ENV"
+//                 }                
+//             }
+//         }
+//         stage("Test") {
+//             steps {
+//                 script {
+//                     echo "GROOVY ---> APP_TYPE : ${env.APP} ENV_TYPE: ${env.ENV}"
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
+
+
 pipeline {
     agent any
 
-    environment {
-         APP = 'frontend'
-         ENV = 'prod'
+    parameters {
+        booleanParam(name : 'Build', defaultValue : 'true', description : 'Do you want to Build?')
+        string(name : 'Branch_Name', defaultValue : 'main', description : 'Enter the branch name to deploy?')
+        choice(name : 'Env_Deploy', defaultValue : ['test', 'QA', 'Stagging', 'Prod'], description : 'Choose the Environment to deploy')
     }
     stages {
 
-        stage ("SCM Checkout") {
+        stage("Checkout") {
             steps {
-                echo "This is checkout stage"
-                sh '''
-                echo "APP_TYPE: $APP ENV_Type: $ENV"
-                '''
-            }
-        }  
-        
-        stage ("Build") {
-            steps {
-                echo "GROOVY ---> APP_TYPE: ${env.APP} ENV_TYPE: ${env.ENV}"
+                echo "Groovy ---> BranchName: ${Branch_Name}"
 
                 script {
-                    echo "GROOVY ---> APP_TYPE : $APP ENV_TYPE: $ENV"
-                }                
+                    echo "Groovy ---> BranchName: ${Branch_Name}"
+                }
+
+                sh '''
+                echo "Shell ---> BranchName: ${Branch_Name}"
+                '''
             }
         }
 
-        stage("Test") {
+        stage("Build") {
             steps {
+                echo "Groovy ---> Build_Type: ${Build}"
+
                 script {
-                    echo "GROOVY ---> APP_TYPE : ${env.APP} ENV_TYPE: ${env.ENV}"
+                    echo "Groovy ---> Build_Type: ${Build}"
                 }
+
+                sh '''
+                echo "Shell ---> Build_Type: ${Build}"
+                '''
+            }
+        }
+
+
+        stage("Deploy") {
+            steps {
+                echo "Groovy ---> Deploy_Type: ${Env_Deploy}"
+
+                script {
+                    echo "Groovy ---> Deploy_Type: ${Env_Deploy}"
+                }
+
+                sh '''
+                echo "Groovy ---> Deploy_Type: ${Env_Deploy}"
+                '''
             }
         }
     }
 }
-

@@ -7,7 +7,7 @@ pipeline {
                 sh 'exit 1'
             }
         }
-       stage ("Checkout SCM") {
+       stage ("Build") {
             steps {
                 echo "This is second stage"
             }

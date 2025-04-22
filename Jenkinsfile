@@ -276,8 +276,8 @@ pipeline {
     agent any
 
     environment {
-        FN = 'suvidha'
-        LN = 'Hezib'
+         APP = 'frontend'
+         ENV = 'prod'
     }
     stages {
 
@@ -285,7 +285,7 @@ pipeline {
             steps {
                 echo "This is checkout stage"
                 sh '''
-                echo 'first name is $FN and last name is $LN'
+                echo 'App_type: $APP Env_type: $ENV'
                 '''
             }
         }  

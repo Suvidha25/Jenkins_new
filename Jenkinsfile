@@ -221,32 +221,52 @@
 
 
 
+// pipeline {
+//     agent any
+
+//     environment {
+//         APP = 'frontend'
+//         ENV = 'prod'
+//     }
+
+//     stages {
+//         stage('checkout') {
+//             steps {
+//                 echo "This is checkout stage"
+//                 sh '''
+//                   echo "APP_TYPE: $APP TARGET_ENV : $ENV"
+//                 '''  
+//                 sh 'ls -lrt'
+//             }
+//         }
+
+//         stage ('Build') {
+//             steps {
+//                 sh '''
+//                   echo "APP_TYPE: $APP TARGET_ENV : $ENV"
+//                 '''
+//                 sh 'pwd'
+//             }
+//         }
+//     }
+// }
+
+
 pipeline {
     agent any
-
-    environment {
-        APP = 'frontend'
-        ENV = 'prod'
-    }
-
     stages {
-        stage('checkout') {
+
+        stage("Checkout") {
             steps {
-                echo "This is checkout stage"
-                sh '''
-                  echo "APP_TYPE: $APP TARGET_ENV : $ENV"
-                '''  
-                sh 'ls -lrt'
+                catchError(stageResult: '')
+                sh 'exit 1'
             }
         }
 
         stage ('Build') {
             steps {
-                sh '''
-                  echo "APP_TYPE: $APP TARGET_ENV : $ENV"
-                '''
                 sh 'pwd'
             }
-        }
+        }    
     }
 }

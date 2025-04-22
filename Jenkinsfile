@@ -175,19 +175,19 @@ pipeline {
 
         stage(Checkout) {
             steps {
-                echo ""
+                echo "This is checkout stage"
             }
         }
 
         stage ('Build') {
             steps {
-                sh 'ls -lrt'
+                sh 'pwd'
             }
         }
 
         stage ('Test') {
             steps {
-                echo ""
+                echo "This is test stage"
             }
         }
     }

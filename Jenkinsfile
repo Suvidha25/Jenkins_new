@@ -82,6 +82,7 @@ pipeline {
             steps {
                 echo "This is second stage"
             }
+        }
 
         stage ("Test1") {
 
@@ -93,6 +94,5 @@ pipeline {
                 echo "This is third stage"
             }
         }   
-        }
     }
 }

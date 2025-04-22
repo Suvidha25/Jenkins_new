@@ -377,7 +377,7 @@ pipeline {
     parameters {
         booleanParam(name : 'Build', defaultValue : 'true', description : 'Do you want to Build?')
         string(name : 'Branch_Name', defaultValue : 'main', description : 'Enter the branch name to deploy?')
-        choice(name : 'Env_Deploy', defaultValue : ['test', 'QA', 'Stagging', 'Prod'], description : 'Choose the Environment to deploy')
+        choice(name : 'Env_Deploy', choices : ['test', 'QA', 'Stagging', 'Prod'], description : 'Choose the Environment to deploy')
     }
     stages {
 

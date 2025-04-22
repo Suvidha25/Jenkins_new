@@ -214,7 +214,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                echo ""
+                sh 'ls -lrt'
             }
         }
     }

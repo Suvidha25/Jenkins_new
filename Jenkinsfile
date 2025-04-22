@@ -109,7 +109,7 @@ pipeline {
             }
         }
 
-        stage ('parallel Testing')
+        stage ('parallel Building')
             parallel {
                 stage ('Build 1') {
                     steps {

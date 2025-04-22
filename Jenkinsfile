@@ -58,41 +58,71 @@
 // }
 
 
+// pipeline {
+//     agent none
+//     stages {
+
+//         stage ("checkout") {
+            
+//             agent {
+//                 label 'slave1'
+//             }
+
+//          steps {
+//             echo "This is first stage"
+//          }   
+//         }
+        
+//         stage ("build") {
+
+//             agent {
+//                 label 'slave1'
+//             }
+
+//             steps {
+//                 echo "This is second stage"
+//             }
+//         }
+
+//         stage ("Test1") {
+
+//             agent {
+//                 label 'slave1'
+//             }
+
+//             steps {
+//                 echo "This is third stage"
+//             }
+//         }   
+//     }
+// }
+
+
+
 pipeline {
-    agent none
+    agent any
     stages {
 
-        stage ("checkout") {
-            
-            agent {
-                label 'slave1'
-            }
-
-         steps {
-            echo "This is first stage"
-         }   
-        }
-        
-        stage ("build") {
-
-            agent {
-                label 'slave1'
-            }
-
+        stage ("Checkout") {
             steps {
-                echo "This is second stage"
+                echo "This is first step"
             }
         }
 
-        stage ("Test1") {
+        stage ('parallel Testing')
+            parallel {
+                stage ('Build 1') {
+                    steps {
+                        echo "This is 1st build stage"
+                    }
+                }
 
-            agent {
-                label 'slave1'
+                stage ('Build 2') {
+                    steps {
+                        echo "This is 2nd build stage"
+                    }
+                }
+                
             }
-
-            steps {
-                echo "This is third stage"
-            }
-        }   
     }
 }

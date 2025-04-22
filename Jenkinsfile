@@ -1,4 +1,4 @@
-#agent any is used to execute the code on any available agents
+//agent any is used to execute the code on any available agents
 // pipeline {
 //     agent any
 //     stages {
@@ -15,7 +15,7 @@
 //     }
 // }
 
-#we cannot have wrong label name
+//we cannot have wrong label name
 // pipeline {
 //     agent {
 //        label 'slavaf'

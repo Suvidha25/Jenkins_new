@@ -236,6 +236,13 @@ pipeline {
                 sh '''
                   echo "APP_TYPE: $APP TARGET_ENV : $ENV"
                 '''  
+                sh 'ls -lrt'
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                sh 'pwd'
             }
         }
     }

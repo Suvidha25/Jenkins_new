@@ -285,7 +285,7 @@ pipeline {
             steps {
                 echo "This is checkout stage"
                 sh '''
-                echo 'My name is ${FN} ${LN}'
+                echo 'first name is $FN and last name is $LN'
                 '''
             }
         }  

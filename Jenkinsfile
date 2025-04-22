@@ -352,9 +352,11 @@ pipeline {
         stage ("Build") {
             steps {
                 echo "This is Build stage"
-                sh '''
-                echo "${env.APP}"
+                script {
+                 sh '''
+                     echo "${env.APP}"
                 '''
+                }
             }
         }
     }

@@ -214,7 +214,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'ls -lrt'
+                sh 'pwd'
             }
         }
     }

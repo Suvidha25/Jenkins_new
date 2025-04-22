@@ -181,13 +181,16 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'pwd'
+                sh '''pwd
+                '''
             }
         }
 
         stage ('Test') {
             steps {
-                echo "This is test stage"
+                sh '''pwd
+                ls -lrt
+                '''
             }
         }
     }

@@ -105,24 +105,31 @@ pipeline {
 
         stage ("Checkout") {
             steps {
-                echo "This is first step"
+                echo "This is first stage"
             }
         }
 
-        stage ('parallel Building')
+        stage ('Build') {
+            steps {
+                echo "This is second stage"
+            }
+        } 
+
+        stage ('Parallel Testing') {
             parallel {
-                stage ('Build 1') {
+                stage ('Test1') {
                     steps {
-                        echo "This is 1st build stage"
+                        echo "This is Test1 stage"
                     }
                 }
 
-                stage ('Build 2') {
+                stage ('Test2') {
                     steps {
-                        echo "This is 2nd build stage"
+                        echo "This is Test2 stage"
                     }
                 }
                 
             }
-    }
+        }    
+   }
 }

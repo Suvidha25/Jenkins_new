@@ -272,16 +272,48 @@
 // }
 
 
+// pipeline {
+//     agent any
+
+//     environment {
+//          FN = 'suvidha'
+//          LN = 'hezib'
+//     }
+//     stages {
+
+//         stage ("SCM Checkout") {
+//             steps {
+//                 echo "This is checkout stage"
+//                 sh '''
+//                 echo "First_name: $FN Last_name: $LN"
+//                 '''
+//             }
+//         }  
+        
+//         stage ("Build") {
+//             steps {
+//                 echo "This is Build stage"
+//                 sh '''
+//                 echo "last_name: $LN First_name:$FN"
+//                 '''
+//             }
+//         }
+//     }
+// }
+
+
+
 pipeline {
     agent any
 
-    environment {
-         FN = 'suvidha'
-         LN = 'hezib'
-    }
+
     stages {
 
         stage ("SCM Checkout") {
+           environment {
+               FN = 'suvidha'
+               LN = 'hezib'
+            }
             steps {
                 echo "This is checkout stage"
                 sh '''
@@ -293,9 +325,6 @@ pipeline {
         stage ("Build") {
             steps {
                 echo "This is Build stage"
-                sh '''
-                echo "last_name: $LN First_name:$FN"
-                '''
             }
         }
     }

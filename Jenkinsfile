@@ -444,6 +444,59 @@
 // }
 
 
+// pipeline {
+//    agent any
+//    parameters {
+//            choice(name : 'BRANCH', choices : ['main', 'production'], description : 'Choose the Environment to deploy')
+//      }
+//      stages {
+
+//          stage("Checkout") {
+         
+//              steps {
+
+//                 git branch: 'main', 
+//                 credentialsId: 'aws_pem',
+//                 url: 'https://github.com/Suvidha25/Jenkins_new.git'
+
+//                 }
+//             }
+        
+
+//         stage("Build_main") {
+//             when {
+//                 expression  { return params.BRANCH == 'main' }
+//               }  
+
+//             steps {
+//                 echo "Groovy ---> Build_Type: ${params.BRANCH}"
+
+//                 script {
+//                     echo "Groovy ---> Build_Type: ${params.BRANCH}"
+//                 }
+//             }
+//         }                  
+
+//                 stage("BUILD_PROD") {
+//             when {
+//                   expression  { return params.BRANCH == 'production' }
+//               }  
+
+//             steps {
+//                 echo "Groovy ---> Build_Type: ${params.BRANCH}"
+
+//                 script {
+//                     echo "Groovy ---> Build_Type: ${params.BRANCH}"
+//                 }
+//             }
+//         }                  
+
+//     } 
+// }
+
+
+
+
 pipeline {
    agent any
    parameters {
@@ -479,8 +532,13 @@ pipeline {
 
                 stage("BUILD_PROD") {
             when {
-                  expression  { return params.BRANCH == 'production' }
-              }  
+                  expression  {
+                       not {
+                        return params.BRANCH == 'production' 
+                       } 
+                    } 
+                }
+            }  
 
             steps {
                 echo "Groovy ---> Build_Type: ${params.BRANCH}"

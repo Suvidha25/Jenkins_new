@@ -447,8 +447,7 @@
 pipeline {
    agent any
    parameters {
-           booleanParam(name : 'Build', defaultValue : 'true', description : 'Do you want to Build?')
-           choice(name : 'Env_Deploy', choices : ['test', 'QA', 'Prod'], description : 'Choose the Environment to deploy')
+           choice(name : 'Env_Deploy', choices : ['main', 'test', 'QA', 'Prod'], description : 'Choose the Environment to deploy')
      }
      stages {
 
@@ -470,15 +469,11 @@ pipeline {
               }  
 
             steps {
-                echo "Groovy ---> Build_Type: ${params.Build}"
+                echo "Groovy ---> Build_Type: ${params.Env_Deploy}"
 
                 script {
-                    echo "Groovy ---> Build_Type: ${params.Build}"
+                    echo "Groovy ---> Build_Type: ${params.Env_Deploy}"
                 }
-
-                sh '''
-                echo "Shell ---> Build_Type: ${Build}"
-                '''
             }
         }
            

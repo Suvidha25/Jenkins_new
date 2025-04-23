@@ -461,7 +461,8 @@ pipeline {
                 (branches: [[name: '*/main']], 
                 extensions: [], 
                 userRemoteConfigs: [[credentialsId: 'aws_pem', 
-                url: 'https://github.com/Suvidha25/Jenkins_new.git']])    
+                url: 'https://github.com/Suvidha25/Jenkins_new.git']])
+                branch : 'main'    
                 }
             }
         

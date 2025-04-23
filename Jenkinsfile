@@ -447,7 +447,7 @@
 pipeline {
    agent any
    parameters {
-           choice(name : 'Env_Deploy', choices : ['main', 'test', 'QA', 'Prod'], description : 'Choose the Environment to deploy')
+           choice(name : 'BRANCH', choices : ['main', 'test', 'QA', 'Prod'], description : 'Choose the Environment to deploy')
      }
      stages {
 
@@ -455,7 +455,7 @@ pipeline {
          
              steps {
 
-                git branch: 'main', 
+                git branch: params.BRANCH, 
                 credentialsId: 'aws_pem',
                 url: 'https://github.com/Suvidha25/Jenkins_new.git'
 
@@ -469,10 +469,10 @@ pipeline {
               }  
 
             steps {
-                echo "Groovy ---> Build_Type: ${params.Env_Deploy}"
+                echo "Groovy ---> Build_Type: ${params.BRANCH}"
 
                 script {
-                    echo "Groovy ---> Build_Type: ${params.Env_Deploy}"
+                    echo "Groovy ---> Build_Type: ${params.BRANCH}"
                 }
             }
         }

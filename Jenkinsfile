@@ -453,10 +453,9 @@ pipeline {
      stages {
 
          stage("Checkout") {
-              when {
-                  branch 'main'
-              }  
+         
              steps {
+
                 checkout scmGit
                 (branches: [[name: '*/main']], 
                 extensions: [], 
@@ -468,6 +467,10 @@ pipeline {
         
 
         stage("Build") {
+            when {
+                  branch 'main'
+              }  
+
             steps {
                 echo "Groovy ---> Build_Type: ${params.Build}"
 

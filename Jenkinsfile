@@ -371,29 +371,100 @@
 
 
 
+// pipeline {
+//     agent any
+
+//     parameters {
+//         booleanParam(name : 'Build', defaultValue : 'true', description : 'Do you want to Build?')
+//         string(name : 'Branch_Name', defaultValue : 'main', description : 'Enter the branch name to deploy?')
+//         choice(name : 'Env_Deploy', choices : ['test', 'QA', 'Stagging', 'Prod'], description : 'Choose the Environment to deploy')
+//     }
+//     stages {
+
+//         stage("Checkout") {
+// //             steps {
+//                 echo "Groovy ---> BranchName: ${params.Branch_Name}"
+
+//                 script {
+//                     echo "Groovy ---> BranchName: ${params.Branch_Name}"
+//                 }
+
+//                 sh '''
+//                 echo "Shell ---> BranchName: ${Branch_Name}"
+//                 '''
+//             }
+//         }
+
+//         stage("Build") {
+//             steps {
+//                 echo "Groovy ---> Build_Type: ${params.Build}"
+
+//                 script {
+//                     echo "Groovy ---> Build_Type: ${params.Build}"
+//                 }
+
+//                 sh '''
+//                 echo "Shell ---> Build_Type: ${Build}"
+//                 '''
+//             }
+//         }
+
+
+//         stage("Deploy") {
+//             steps {
+//                 echo "Groovy ---> Deploy_Type: ${params.Env_Deploy}"
+
+//                 script {
+//                     echo "Groovy ---> Deploy_Type: ${params.Env_Deploy}"
+//                 }
+
+//                 sh '''
+//                 echo "Groovy ---> Deploy_Type: ${Env_Deploy}"
+//                 '''
+//             }
+//         }
+//     }
+// }
+
+
+// boolean runStage1 = False
+
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage (stage1) {
+//             when expression(runStage1 == True)
+
+//            steps {
+
+//            }   
+//         }
+//     }
+// }
+
+
 pipeline {
-    agent any
+   agent any
+   parameters {
+           booleanParam(name : 'Build', defaultValue : 'true', description : 'Do you want to Build?')
+           choice(name : 'Env_Deploy', choices : ['test', 'QA', 'Prod'], description : 'Choose the Environment to deploy')
+     }
+     stages {
 
-    parameters {
-        booleanParam(name : 'Build', defaultValue : 'true', description : 'Do you want to Build?')
-        string(name : 'Branch_Name', defaultValue : 'main', description : 'Enter the branch name to deploy?')
-        choice(name : 'Env_Deploy', choices : ['test', 'QA', 'Stagging', 'Prod'], description : 'Choose the Environment to deploy')
-    }
-    stages {
-
-        stage("Checkout") {
-            steps {
-                echo "Groovy ---> BranchName: ${params.Branch_Name}"
-
-                script {
-                    echo "Groovy ---> BranchName: ${params.Branch_Name}"
+         stage("Checkout") {
+              when {
+                  branch 'main'
+              }  
+             steps {
+                checkout scmGit
+                (branches: [[name: '*/main']], 
+                extensions: [], 
+                userRemoteConfigs: [[credentialsId: 'aws_pem', 
+                url: 'https://github.com/Suvidha25/Jenkins_new.git']])    
                 }
-
-                sh '''
-                echo "Shell ---> BranchName: ${Branch_Name}"
-                '''
             }
-        }
+        
 
         stage("Build") {
             steps {
@@ -423,22 +494,5 @@ pipeline {
                 '''
             }
         }
-    }
+    } 
 }
-
-
-// boolean runStage1 = False
-
-// pipeline {
-//     agent any
-
-//     stages {
-//         stage (stage1) {
-//             when expression(runStage1 == True)
-
-//            steps {
-
-//            }   
-//         }
-//     }
-// }

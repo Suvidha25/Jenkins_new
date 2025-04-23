@@ -466,7 +466,7 @@ pipeline {
 
         stage("Build") {
             when {
-                  branch 'master'
+                  branch 'main'
               }  
 
             steps {

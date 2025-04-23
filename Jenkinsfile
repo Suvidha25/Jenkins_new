@@ -460,8 +460,7 @@ pipeline {
                 (branches: [[name: '*/main']], 
                 extensions: [], 
                 userRemoteConfigs: [[credentialsId: 'aws_pem', 
-                url: 'https://github.com/Suvidha25/Jenkins_new.git']])
-                branch : 'main'    
+                url: 'https://github.com/Suvidha25/Jenkins_new.git']])    
                 }
             }
         
@@ -483,20 +482,7 @@ pipeline {
                 '''
             }
         }
-
-
-        stage("Deploy") {
-            steps {
-                echo "Groovy ---> Deploy_Type: ${params.Env_Deploy}"
-
-                script {
-                    echo "Groovy ---> Deploy_Type: ${params.Env_Deploy}"
-                }
-
-                sh '''
-                echo "Groovy ---> Deploy_Type: ${Env_Deploy}"
-                '''
-            }
-        }
+           
+        
     } 
 }

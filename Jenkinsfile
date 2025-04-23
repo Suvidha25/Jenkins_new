@@ -456,8 +456,7 @@ pipeline {
          
              steps {
 
-                checkout scmGit
-                (branches: [[name: '*/main']], 
+                checkout scmGit(branches: [[name: '*/master']], 
                 extensions: [], 
                 userRemoteConfigs: [[credentialsId: 'aws_pem', 
                 url: 'https://github.com/Suvidha25/Jenkins_new.git']])    
@@ -467,7 +466,7 @@ pipeline {
 
         stage("Build") {
             when {
-                  branch 'main'
+                  branch 'master'
               }  
 
             steps {

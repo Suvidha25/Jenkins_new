@@ -530,24 +530,21 @@ pipeline {
             }
         }                  
 
-                stage("BUILD_PROD") {
+        stage("BUILD_PROD") {
             when {
                   expression  {
                        not {
                         return params.BRANCH == 'production' 
-                       } 
-                    } 
+                    }
                 }
-            }  
-
+            }
             steps {
                 echo "Groovy ---> Build_Type: ${params.BRANCH}"
 
                 script {
                     echo "Groovy ---> Build_Type: ${params.BRANCH}"
-                }
-            }
-        }                  
-
+                } 
+            } 
+        }    
     } 
 }

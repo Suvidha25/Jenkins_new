@@ -383,10 +383,10 @@ pipeline {
 
         stage("Checkout") {
             steps {
-                echo "Groovy ---> BranchName: ${Branch_Name}"
+                echo "Groovy ---> BranchName: ${params.Branch_Name}"
 
                 script {
-                    echo "Groovy ---> BranchName: ${Branch_Name}"
+                    echo "Groovy ---> BranchName: ${params.Branch_Name}"
                 }
 
                 sh '''
@@ -397,10 +397,10 @@ pipeline {
 
         stage("Build") {
             steps {
-                echo "Groovy ---> Build_Type: ${Build}"
+                echo "Groovy ---> Build_Type: ${params.Build}"
 
                 script {
-                    echo "Groovy ---> Build_Type: ${Build}"
+                    echo "Groovy ---> Build_Type: ${params.Build}"
                 }
 
                 sh '''
@@ -412,10 +412,10 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                echo "Groovy ---> Deploy_Type: ${Env_Deploy}"
+                echo "Groovy ---> Deploy_Type: ${params.Env_Deploy}"
 
                 script {
-                    echo "Groovy ---> Deploy_Type: ${Env_Deploy}"
+                    echo "Groovy ---> Deploy_Type: ${params.Env_Deploy}"
                 }
 
                 sh '''
@@ -425,3 +425,20 @@ pipeline {
         }
     }
 }
+
+
+// boolean runStage1 = False
+
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage (stage1) {
+//             when expression(runStage1 == True)
+
+//            steps {
+
+//            }   
+//         }
+//     }
+// }

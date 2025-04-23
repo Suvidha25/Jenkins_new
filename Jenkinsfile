@@ -455,7 +455,7 @@ pipeline {
          
              steps {
 
-                git branch: params.BRANCH, 
+                git branch: 'main', 
                 credentialsId: 'aws_pem',
                 url: 'https://github.com/Suvidha25/Jenkins_new.git'
 

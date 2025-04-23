@@ -447,7 +447,7 @@
 pipeline {
    agent any
    parameters {
-           choice(name : 'BRANCH', choices : ['main', 'test', 'QA', 'Prod'], description : 'Choose the Environment to deploy')
+           choice(name : 'BRANCH', choices : ['main', 'production'], description : 'Choose the Environment to deploy')
      }
      stages {
 
@@ -463,7 +463,7 @@ pipeline {
             }
         
 
-        stage("Build") {
+        stage("Build_main") {
             when {
                   branch 'main'
               }  
@@ -475,8 +475,21 @@ pipeline {
                     echo "Groovy ---> Build_Type: ${params.BRANCH}"
                 }
             }
-        }
-           
-        
+        }                  
+
+                stage("BUILD_PROD") {
+            when {
+                  branch 'production'
+              }  
+
+            steps {
+                echo "Groovy ---> Build_Type: ${params.BRANCH}"
+
+                script {
+                    echo "Groovy ---> Build_Type: ${params.BRANCH}"
+                }
+            }
+        }                  
+
     } 
 }

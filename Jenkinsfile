@@ -465,7 +465,7 @@ pipeline {
 
         stage("Build_main") {
             when {
-                  branch 'main'
+                expression  { return params.BRANCH == 'main' }
               }  
 
             steps {
@@ -479,7 +479,7 @@ pipeline {
 
                 stage("BUILD_PROD") {
             when {
-                  branch 'production'
+                  expression  { return params.BRANCH == 'production' }
               }  
 
             steps {

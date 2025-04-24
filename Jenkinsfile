@@ -556,7 +556,7 @@ pipeline {
     stages{
         
         stage("SCM Checkout") {
-            agents {
+            agent {
                 label 'slave1'
             } 
             steps {
@@ -565,7 +565,7 @@ pipeline {
         }
 
         stage ("Build") {
-            agents {
+            agent {
                 label 'slave1'
             }
             steps {
@@ -574,7 +574,7 @@ pipeline {
         }
 
         stage ("Test") {
-            agents {
+            agent {
                 label 'slave2'
             }
             steps {

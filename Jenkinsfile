@@ -674,7 +674,7 @@
 // }
 
 
-def NAME = "suvidha"
+NAME = "suvidha"
 pipeline {
     agent any
     stages {
@@ -682,7 +682,7 @@ pipeline {
         stage("SCM Checkout") {
             steps {
                 script {
-                    echo "My name is ${NAME}"
+                    echo "My name is ${env.NAME}"
                 }
             }
         }

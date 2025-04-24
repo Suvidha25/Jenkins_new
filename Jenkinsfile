@@ -567,14 +567,14 @@ pipeline {
 
         stage ("Build") {
             steps {
-                sh 'pwd'
+               echo "Last name is ${env.LN}"
             }
           
         }
 
         stage ("Test") {
             steps {
-                sh 'env'
+                echo "First name is ${env.FN}"
             }
         }
     }

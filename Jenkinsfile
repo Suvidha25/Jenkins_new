@@ -674,7 +674,7 @@
 // }
 
 
-NAME = "suvidha"
+def NAME = "suvidha"
 pipeline {
     agent any
     stages {

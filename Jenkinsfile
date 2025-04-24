@@ -643,7 +643,7 @@ pipeline {
 
         stage ("Checkout") {
             steps {
-                "This is checkout stage" 
+              echo "This is checkout stage" 
             }
         }
 

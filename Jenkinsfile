@@ -552,33 +552,31 @@
 
 pipeline {
     agent any
-    
-    environment {
-        FN = 'suvidha'
-        LN = 'Hezib'
-    }
+    parameters {
+        choice(name = 'BRANCH', choices: [main, prod], description: 'Enter the Branch to deploy')
+    }       
     
     stages{
         
         stage("SCM Checkout") {
           steps {
-            echo "My name is ${env.FN} ${env.LN}"
+            echo "Branch is ${env.BRANCH}"
              script {
-                echo "My name is ${env.FN} ${env.LN}"
+                echo "Branch is ${env.BRANCH}"
             }
           } 
         }
 
         stage ("Build") {
             steps {
-               echo "Last name is ${env.LN}"
+               echo "This is second stage"
             }
           
         }
 
         stage ("Test") {
             steps {
-                echo "First name is ${env.FN}"
+                echo "This is Third stage
             }
         }
     }

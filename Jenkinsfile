@@ -550,13 +550,12 @@
 // }
 
 
-
-pipeline {
-    agent any
-    environment {
+environment {
         FN = 'suvidha'
         LN = 'Hezib'
     }
+pipeline {
+    agent any
     stages{
         
         stage("SCM Checkout") {

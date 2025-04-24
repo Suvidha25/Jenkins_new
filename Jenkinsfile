@@ -553,7 +553,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name : 'BRANCH', choices : ['main', 'prod'], description : 'Enter the Branch to deploy')
+        choice(name : 'BRANCH', choices : ['main', 'prod', 'QA'], description : 'Enter the Branch to deploy')
     }       
     
     stages{
@@ -572,6 +572,11 @@ pipeline {
         }
 
         stage ("Build") {
+            when {
+                expression {
+                    ! (params.BRANCH == 'QA')
+                }
+            }
             steps {
                echo "This is second stage"
             }

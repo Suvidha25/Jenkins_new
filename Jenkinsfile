@@ -596,32 +596,57 @@
 //     }
 // }
 
+// pipeline {
+//     agent any
+//     stages {
+//         stage ("SCM Checkout") {
+//             steps {
+//                 catchError(buildResult : 'Failure', stageResult : 'Failure') {
+//                     sh '''
+//                     "This is checkout"
+//                     exit 1 '''
+//                 }
+//             }
+//         }
+
+//         stage ("Build") {
+//             steps {
+//               echo "This is Build"  
+//             }
+//         }    
+
+//         stage ("Test") {
+//             steps {
+//                 echo "This is Test"
+//             }
+//         }
+//     }
+// }
+
+
+
 pipeline {
     agent any
+    options {
+    buildDiscarder(logRotator(numToKeepStr: '10')) 
+    }
     stages {
-        stage ("SCM Checkout") {
+
+        stage ("Checkout") {
             steps {
-                catchError(buildResult : 'Failure', stageResult : 'Failure') {
-                    sh '''
-                    "This is checkout"
-                    exit 1 '''
-                }
+              echo "This is checkout stage" 
             }
         }
 
         stage ("Build") {
             steps {
-                try {
-                    "This is Build"
-                } catch (Exception e) {
-                    echo "Caught an exception: ${e.message}"
-                }
-            }   
+               echo "This is Build stage"
+            }
         }
 
-        stage ("Test") {
+        stage("Test") {
             steps {
-                echo "This is Test"
+              sh 'touch new1'
             }
         }
     }

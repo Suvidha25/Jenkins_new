@@ -560,6 +560,11 @@ pipeline {
     stages{
         
         stage("SCM Checkout") {
+            when {
+                expression {
+                    Branch 'main'
+                }
+            }
           steps {
              script {
                 echo "Branch is ${params.BRANCH}"

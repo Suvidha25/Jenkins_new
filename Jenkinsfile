@@ -661,11 +661,14 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            echo 'Pipeline finished. Performing cleanup tasks...'
-            cleanWs() // Example: Cleanup workspace
-           
+     post {
+    //     always {
+    //         echo 'Pipeline finished. Performing cleanup tasks...'
+    //         cleanWs() // Example: Cleanup workspace
+        // }
+           success {
+            echo 'Pipeline succeeded! Sending success notifications...'
         }
-    }    
+
+    }
 }

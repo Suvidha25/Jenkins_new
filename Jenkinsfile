@@ -550,44 +550,72 @@
 // }
 
 
+// pipeline {
+//     agent any
+//     parameters {
+//         choice(name : 'BRANCH', choices : ['main', 'prod', 'QA'], description : 'Enter the Branch to deploy')
+//     }       
+    
+//     stages{
+        
+//         stage("SCM Checkout") {
+//             when {
+//                 expression {
+//                     ! (params.BRANCH == 'main')
+//                 }
+//             }
+//           steps {
+//              script {
+//                 echo "Branch is ${params.BRANCH}"     
+//             }
+//           } 
+//         }
+
+//         stage ("Build") {
+//             when {
+//                 expression {
+//                     (params.BRANCH == 'QA' || params.BRANCH == 'main')
+//                 }
+//             }
+//             steps {
+//                echo "This is second stage"
+//             }
+          
+//         }
+
+//         stage ("Test") {
+//             when {
+//                 expression {
+//                     (params.BRANCH == 'Prod')
+//                 }
+//             }
+//             steps {
+//                 echo "This is Third stage"
+//             }
+//         }
+//     }
+// }
+
 pipeline {
     agent any
-    parameters {
-        choice(name : 'BRANCH', choices : ['main', 'prod', 'QA'], description : 'Enter the Branch to deploy')
-    }       
-    
-    stages{
-        
-        stage("SCM Checkout") {
-            when {
-                expression {
-                    ! (params.BRANCH == 'main')
-                }
+    stages {
+        stage ("SCM Checkout") {
+            steps {
+                catchError(buildResult : 'Failure', stageResult : 'Failure')
+                "THis is checkout"
             }
-          steps {
-             script {
-                echo "Branch is ${params.BRANCH}"     
-            }
-          } 
         }
 
         stage ("Build") {
-            when {
-                expression {
-                    (params.BRANCH == 'QA' || params.BRANCH == 'main')
-                }
-            }
             steps {
-               echo "This is second stage"
+                echo "This is  Build"
             }
-          
         }
 
         stage ("Test") {
             steps {
-                echo "This is Third stage"
+                echo "This is Test"
             }
         }
     }
 }
-

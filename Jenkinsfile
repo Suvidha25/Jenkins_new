@@ -561,7 +561,7 @@ pipeline {
         stage("SCM Checkout") {
             when {
                 expression {
-                    ! (params.BRANCH == 'main', 'prod')
+                    ! (params.BRANCH == 'main')
                 }
             }
           steps {
@@ -574,7 +574,7 @@ pipeline {
         stage ("Build") {
             when {
                 expression {
-                    ! (params.BRANCH == 'QA', 'main')
+                    (params.BRANCH == 'QA' || params.BRANCH == 'main')
                 }
             }
             steps {

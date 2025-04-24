@@ -553,7 +553,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name : 'STAGE', choices : ['main', 'not_main'], description : 'Enter the stage to deploy')
+        choice(name : 'STAGE', choices : ['main', 'prod'], description : 'Enter the stage to deploy')
     }       
     
     stages{

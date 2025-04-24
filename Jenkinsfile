@@ -573,7 +573,9 @@ pipeline {
 
         stage ("Build") {
             when {
-                expression { return params.STAGE == 'Build'}
+                expression {
+                    not { return params.STAGE == 'Build' }
+                }
             }
             steps {
                echo "This is second stage"
@@ -582,11 +584,6 @@ pipeline {
         }
 
         stage ("Test") {
-            when {
-                expression {
-                    not { return params.STAGE == 'QA'}
-                 }
-            }
             steps {
                 echo "This is Third stage"
             }

@@ -560,9 +560,9 @@ pipeline {
         
         stage("SCM Checkout") {
           steps {
-            echo "Branch is ${env.BRANCH}"
+            echo "Branch is ${params.BRANCH}"
              script {
-                echo "Branch is ${env.BRANCH}"
+                echo "Branch is ${params.BRANCH}"
             }
           } 
         }

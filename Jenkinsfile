@@ -560,12 +560,14 @@ pipeline {
                 stage("Checkout1") {
                     steps {
                         echo "This is 1st checkout stage"
+                        sh 'sleep 20'                    
                     }
                 }
 
                 stage ("Chekout2") {
                     steps {
                         echo "This is 2nd chekout stage"
+                        sh 'sleep 20'
                     }
                 }  
             }
@@ -576,12 +578,14 @@ pipeline {
                 stage("Build1") {
                     steps {
                         echo "This is 1st Build stage"
+                        sh 'sleep 20'
                     }
                 }
 
                 stage ("Build2") {
                     steps {
                         echo "This is 2nd Build stage"
+                        sh 'sleep 20'
                     }
                 }  
             }

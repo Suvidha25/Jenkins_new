@@ -561,9 +561,7 @@ pipeline {
         stage("SCM Checkout") {
             when {
                 expression {
-                    not { 
-                        params.BRANCH == 'main'
-                    }
+                    ! (params.BRANCH == 'main')
                 }
             }
           steps {

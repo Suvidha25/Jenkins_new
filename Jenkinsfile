@@ -553,7 +553,7 @@
 pipeline {
     agent any
     parameters {
-        choice(name : 'STAGE', choices : ['main', 'prod'], description : 'Enter the stage to deploy')
+        choice(name : 'BRANCH', choices : ['main', 'prod'], description : 'Enter the Branch to deploy')
     }       
     
     stages{
@@ -562,13 +562,13 @@ pipeline {
             when {
                 expression {
                     not { 
-                        return params.STAGE == 'main'
+                        return params.BRANCH == 'main'
                     }
                 }
             }
           steps {
              script {
-                echo "Stage is ${params.STAGE}"     
+                echo "Branch is ${params.BRANCH}"     
             }
           } 
         }

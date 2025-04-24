@@ -576,7 +576,7 @@ pipeline {
 
         stage ("Test") {
             steps {
-                echo "This is Third stage
+                echo "This is Third stage"
             }
         }
     }

@@ -625,50 +625,66 @@
 
 
 
-pipeline {
-    agent any
-    // options {
-    //     buildDiscarder(logRotator(numToKeepStr: '5')) 
-    // }
+// pipeline {
+//     agent any
+//     // options {
+//     //     buildDiscarder(logRotator(numToKeepStr: '5')) 
+//     // }
 
-    // options {
-    //     retry(2) // Retry 4 times if job fails 
-    // }
+//     // options {
+//     //     retry(2) // Retry 4 times if job fails 
+//     // }
 
     
-    // triggers {
-    //     pollSCM ('H/3 * * * *')
-    // }
+//     // triggers {
+//     //     pollSCM ('H/3 * * * *')
+//     // }
+//     stages {
+
+//         stage ("Checkout") {
+//             steps {
+//               echo "This is checkout stage" 
+//             }
+//         }
+
+//         stage ("Build") {
+//             steps {
+//                echo "This is Build stage"
+//                sh 'pwd'
+//             }
+//         }
+
+//         stage("Test") {
+//             steps {
+//               sh 'ls -lrt'
+//             }
+//         }
+//     }
+
+//      post {
+//     //     always {
+//     //         echo 'Pipeline finished. Performing cleanup tasks...'
+//     //         cleanWs() // Example: Cleanup workspace
+//         // }
+//            success {
+//             echo 'Pipeline succeeded! Sending success notifications...'
+//         }
+
+//     }
+// }
+
+
+def NAME = "suvidha"
+pipeline {
+    agent any
     stages {
 
-        stage ("Checkout") {
+        stage("SCM Checkout") {
             steps {
-              echo "This is checkout stage" 
+                script {
+                    echo "My name is ${NAME}"
+                }
             }
         }
-
-        stage ("Build") {
-            steps {
-               echo "This is Build stage"
-               sh 'pwd'
-            }
-        }
-
-        stage("Test") {
-            steps {
-              sh 'ls -lrt'
-            }
-        }
-    }
-
-     post {
-    //     always {
-    //         echo 'Pipeline finished. Performing cleanup tasks...'
-    //         cleanWs() // Example: Cleanup workspace
-        // }
-           success {
-            echo 'Pipeline succeeded! Sending success notifications...'
-        }
-
     }
 }

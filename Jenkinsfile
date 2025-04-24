@@ -660,4 +660,12 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            echo 'Pipeline finished. Performing cleanup tasks...'
+            cleanWs() // Example: Cleanup workspace
+           
+        }
+    }    
 }

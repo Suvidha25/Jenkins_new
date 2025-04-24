@@ -627,8 +627,11 @@
 
 pipeline {
     agent any
-    options {
-    buildDiscarder(logRotator(numToKeepStr: '10')) 
+    // options {
+    //     buildDiscarder(logRotator(numToKeepStr: '10')) 
+    // }
+    triggers {
+        pollSCM ('H/3 * * * *')
     }
     stages {
 
@@ -646,7 +649,7 @@ pipeline {
 
         stage("Test") {
             steps {
-              sh 'touch new1'
+              sh 'ls -lrt'
             }
         }
     }

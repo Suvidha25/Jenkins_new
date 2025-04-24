@@ -574,11 +574,6 @@ pipeline {
         }
 
         stage ("Build") {
-            when {
-                expression {
-                    not { return params.STAGE == 'not_main' }
-                }
-            }
             steps {
                echo "This is second stage"
             }

@@ -603,6 +603,7 @@ pipeline {
             steps {
                 catchError(buildResult : 'Failure', stageResult : 'Failure')
                 "THis is checkout"
+                sh 'exit 1'
             }
         }
 

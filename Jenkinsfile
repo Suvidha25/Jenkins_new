@@ -627,9 +627,14 @@
 
 pipeline {
     agent any
+    // options {
+    //     buildDiscarder(logRotator(numToKeepStr: '5')) 
+    // }
+
     options {
-        buildDiscarder(logRotator(numToKeepStr: '5')) 
+        retry(2) // Retry 4 times if job fails 
     }
+
     
     triggers {
         pollSCM ('H/3 * * * *')
@@ -638,7 +643,7 @@ pipeline {
 
         stage ("Checkout") {
             steps {
-              echo "This is checkout stage" 
+                "This is checkout stage" 
             }
         }
 

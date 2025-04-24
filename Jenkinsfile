@@ -582,6 +582,11 @@ pipeline {
         }
 
         stage ("Test") {
+            when {
+                expression {
+                    not { return params.STAGE == 'QA'}
+                 }
+            }
             steps {
                 echo "This is Third stage"
             }

@@ -561,9 +561,7 @@ pipeline {
         
         stage("SCM Checkout") {
             when {
-                expression {
-                    Branch 'main'
-                }
+                expression { return params.BRANCH == 'main' }
             }
           steps {
              script {

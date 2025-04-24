@@ -562,7 +562,7 @@ pipeline {
             when {
                 expression {
                     not { 
-                        return params.BRANCH == 'main'
+                        params.BRANCH == 'main'
                     }
                 }
             }

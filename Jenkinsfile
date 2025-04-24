@@ -497,54 +497,80 @@
 
 
 
-pipeline {
-   agent any
-   parameters {
-           choice(name : 'BRANCH', choices : ['main', 'production'], description : 'Choose the Environment to deploy')
-     }
-     stages {
+// pipeline {
+//    agent any
+//    parameters {
+//            choice(name : 'BRANCH', choices : ['main', 'production'], description : 'Choose the Environment to deploy')
+//      }
+//      stages {
 
-         stage("Checkout") {
+//          stage("Checkout") {
          
-             steps {
+//              steps {
 
-                git branch: 'main', 
-                credentialsId: 'aws_pem',
-                url: 'https://github.com/Suvidha25/Jenkins_new.git'
+//                 git branch: 'main', 
+//                 credentialsId: 'aws_pem',
+//                 url: 'https://github.com/Suvidha25/Jenkins_new.git'
 
-                }
-            }
+//                 }
+//             }
         
 
-        stage("Build_main") {
-            when {
-                expression  { return params.BRANCH == 'main' }
-              }  
+//         stage("Build_main") {
+//             when {
+//                 expression  { return params.BRANCH == 'main' }
+//               }  
 
+//             steps {
+//                 echo "Groovy ---> Build_Type: ${params.BRANCH}"
+
+//                 script {
+//                     echo "Groovy ---> Build_Type: ${params.BRANCH}"
+//                 }
+//             }
+//         }                  
+
+//         stage("BUILD_PROD") {
+//             when {
+//                   expression  {
+//                        not {
+//                         return params.BRANCH == 'main' 
+//                     }
+//                 }
+//             }
+//             steps {
+//                 echo "Groovy ---> Build_Type: ${params.BRANCH}"
+
+//                 script {
+//                     echo "Groovy ---> Build_Type: ${params.BRANCH}"
+//                 } 
+//             } 
+//         }    
+//     } 
+// }
+
+
+
+pipeline {
+    agent any
+    stages{
+        
+        stage("SCM Checkout") {
             steps {
-                echo "Groovy ---> Build_Type: ${params.BRANCH}"
-
-                script {
-                    echo "Groovy ---> Build_Type: ${params.BRANCH}"
-                }
+                echo "This is first step"
             }
-        }                  
+        }
 
-        stage("BUILD_PROD") {
-            when {
-                  expression  {
-                       not {
-                        return params.BRANCH == 'main' 
-                    }
-                }
-            }
+        stage ("Build") {
             steps {
-                echo "Groovy ---> Build_Type: ${params.BRANCH}"
+                echo "This is second stage"
+            }
+        }
 
-                script {
-                    echo "Groovy ---> Build_Type: ${params.BRANCH}"
-                } 
-            } 
-        }    
-    } 
+        stage ("Test") {
+            steps {
+                echo "This is Third stage"
+            }
+        }
+    }
 }

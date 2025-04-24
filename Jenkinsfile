@@ -644,6 +644,7 @@ pipeline {
         stage ("Build") {
             steps {
                echo "This is Build stage"
+               sh 'pwd'
             }
         }
 

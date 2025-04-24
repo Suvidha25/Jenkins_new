@@ -572,8 +572,18 @@ pipeline {
         }
 
         stage ("Build") {
-            steps {
-                echo "This is second stage"
+           parallel {
+                stage("Build1") {
+                    steps {
+                        echo "This is 1st Build stage"
+                    }
+                }
+
+                stage ("Build2") {
+                    steps {
+                        echo "This is 2nd Build stage"
+                    }
+                }  
             }
         }
 

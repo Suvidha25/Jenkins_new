@@ -556,96 +556,23 @@ pipeline {
     stages{
         
         stage("SCM Checkout") {
-            parallel {
-                stage("Checkout1") {
-                    steps {
-                        echo "This is 1st checkout stage"
-                        sh 'sleep 10'                    
-                    }
-                }
-
-                stage ("Chekout2") {
-                    steps {
-                        echo "This is 2nd chekout stage"
-                        sh 'sleep 10'
-                    }
-                }  
-            }
+          steps {
+            sh 'ls -lrt'
+          } 
         }
 
         stage ("Build") {
-           parallel {
-                stage("Build1") {
-                    steps {
-                        echo "This is 1st Build stage"
-                        sh 'sleep 10'
-                    }
-                }
-
-                stage ("Build2") {
-                    steps {
-                        echo "This is 2nd Build stage"
-                        sh 'sleep 10'
-                    }
-                }  
+            steps {
+                sh 'pwd'
             }
+          
         }
 
         stage ("Test") {
             steps {
-                echo "This is Third stage"
+                sh 'env'
             }
         }
     }
 }
 
-
-
-
-pipeline {
-    agent any
-    stages{
-        
-        stage("SCM Checkout") {
-            parallel {
-                stage("Checkout1") {
-                    steps {
-                        echo "This is 1st checkout stage"
-                        sh 'sleep 10'                    
-                    }
-                }
-
-                stage ("Chekout2") {
-                    steps {
-                        echo "This is 2nd chekout stage"
-                        sh 'sleep 10'
-                    }
-                }  
-            }
-        }
-
-        stage ("Build") {
-           parallel {
-                stage("Build1") {
-                    steps {
-                        echo "This is 1st Build stage"
-                        sh 'sleep 10'
-                    }
-                }
-
-                stage ("Build2") {
-                    steps {
-                        echo "This is 2nd Build stage"
-                        sh 'sleep 10'
-                    }
-                }  
-            }
-        }
-
-        stage ("Test") {
-            steps {
-                echo "This is Third stage"
-            }
-        }
-    }
-}

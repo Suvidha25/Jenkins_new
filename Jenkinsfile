@@ -601,7 +601,11 @@ pipeline {
     stages {
         stage ("SCM Checkout") {
             steps {
-                "This is checkout"
+                catchError(buildResult : 'Failure', stageResult : 'Failure') {
+                    sh '''
+                    "This is checkout"
+                    exit 1 '''
+                }
             }
         }
 

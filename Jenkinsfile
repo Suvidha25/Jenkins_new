@@ -553,16 +553,17 @@
 pipeline {
     agent any
     parameters {
-        choice(name : 'BRANCH', choices : ['main', 'prod'], description : 'Enter the Branch to deploy')
+        string(name : 'BRANCH', defaultValue : 'main', description : 'Enter the Branch')
+        choice(name : 'STAGE', choices : ['test', 'prod', 'QA'], description : 'Enter the stage to deploy')
     }       
     
     stages{
         
         stage("SCM Checkout") {
           steps {
-            echo "Branch is ${params.BRANCH}"
              script {
                 echo "Branch is ${params.BRANCH}"
+                echo "Stage is ${params.STAGE}"     
             }
           } 
         }

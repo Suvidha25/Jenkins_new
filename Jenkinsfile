@@ -553,11 +553,15 @@
 
 pipeline {
     agent any
+    environment {
+        FN = 'suvidha'
+        LN = 'Hezib'
+    }
     stages{
         
         stage("SCM Checkout") {
           steps {
-            sh 'ls -lrt'
+            echo "My name is ${env.FN} ${env.LN}"
           } 
         }
 

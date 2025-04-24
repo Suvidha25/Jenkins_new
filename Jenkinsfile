@@ -631,9 +631,9 @@ pipeline {
     //     buildDiscarder(logRotator(numToKeepStr: '5')) 
     // }
 
-    options {
-        retry(2) // Retry 4 times if job fails 
-    }
+    // options {
+    //     retry(2) // Retry 4 times if job fails 
+    // }
 
     
     triggers {

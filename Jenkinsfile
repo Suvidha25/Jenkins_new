@@ -550,17 +550,22 @@
 // }
 
 
-environment {
+pipeline {
+    agent any
+    
+    environment {
         FN = 'suvidha'
         LN = 'Hezib'
     }
-pipeline {
-    agent any
+    
     stages{
         
         stage("SCM Checkout") {
           steps {
             echo "My name is ${env.FN} ${env.LN}"
+             script {
+                echo "My name is ${env.FN} ${env.LN}"
+            }
           } 
         }
 

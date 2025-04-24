@@ -552,22 +552,31 @@
 
 
 pipeline {
-    agent any
+    agent none
     stages{
         
         stage("SCM Checkout") {
+            agents {
+                label 'slave1'
+            } 
             steps {
                 echo "This is first step"
             }
         }
 
         stage ("Build") {
+            agents {
+                label 'slave1'
+            }
             steps {
                 echo "This is second stage"
             }
         }
 
         stage ("Test") {
+            agents {
+                label 'slave2'
+            }
             steps {
                 echo "This is Third stage"
             }

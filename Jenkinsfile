@@ -636,9 +636,9 @@ pipeline {
     // }
 
     
-    triggers {
-        pollSCM ('H/3 * * * *')
-    }
+    // triggers {
+    //     pollSCM ('H/3 * * * *')
+    // }
     stages {
 
         stage ("Checkout") {

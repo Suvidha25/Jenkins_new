@@ -611,8 +611,12 @@ pipeline {
 
         stage ("Build") {
             steps {
-                echo "This is  Build"
-            }
+                try {
+                    "This is Build"
+                } catch (Exception e) {
+                    echo "Caught an exception: ${e.message}"
+                }
+            }   
         }
 
         stage ("Test") {
